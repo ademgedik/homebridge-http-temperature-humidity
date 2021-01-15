@@ -1,4 +1,4 @@
-# homebridge-http-temperature-humidity
+# homebridge-dykie-rf433-temperature-humidity
 
 Supports https devices on HomeBridge Platform
 
