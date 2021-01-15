@@ -6,12 +6,13 @@ var humidityService;
 var url;
 var humidity = 0;
 var temperature = 0;
+var channel = 1;
 
 module.exports = function(homebridge) {
   Service = homebridge.hap.Service;
   Characteristic = homebridge.hap.Characteristic;
   homebridge.registerAccessory(
-    "homebridge-httptemperaturehumidity",
+    "homebridge-dykie-RF433-Temperature-Humidity",
     "HttpTemphum",
     HttpTemphum
   );
@@ -25,10 +26,11 @@ function HttpTemphum(log, config) {
   this.http_method = config["http_method"] || "GET";
   this.sendimmediately = config["sendimmediately"] || "";
   this.name = config["name"];
-  this.manufacturer = config["manufacturer"] || "Luca Manufacturer";
-  this.model = config["model"] || "Luca Model";
-  this.serial = config["serial"] || "Luca Serial";
+  this.manufacturer = config["manufacturer"] || "DYKIE";
+  this.model = config["model"] || "MDL 1";
+  this.serial = config["serial"] || "0001";
   this.humidity = config["humidity"];
+  this.channel = config["channel"] || 1;
 }
 
 HttpTemphum.prototype = {
@@ -73,7 +75,12 @@ HttpTemphum.prototype = {
       callback(err);
     } else {
       this.log("HTTP power function succeeded!");
-      var info = JSON.parse(res.body);
+      //var info = JSON.parse(res.body);
+      var info = res.body;
+      var line = info.split("<br>")[0];
+      info.temperature = line.split(";")[5];
+      info.humidity = line.split(";")[6];
+      
       info.temperature = parseFloat(info.temperature);
       info.humidity = parseFloat(info.humidity);
 
