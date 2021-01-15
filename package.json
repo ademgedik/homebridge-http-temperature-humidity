@@ -1,6 +1,6 @@
 {
-  "name": "homebridge-http-temperature-humidity",
-  "version": "0.0.18",
+  "name": "homebridge-dykie-RF433MHz-temperature-humidity",
+  "version": "0.0.01",
   "description": "https plugin for homebridge",
   "license": "ISC",
   "keywords": [
@@ -11,7 +11,7 @@
     "homebridge": ">=0.2.0"
   },
   "author": {
-    "name": "Valentin Knabel"
+    "name": "Adem GEDİK"
   },
   "repository": {
     "type": "git",
